@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Text to PPTX Generator</title>
+  <script src="https://unpkg.com/pptxgenjs"></script>
+</head>
+<body>
+  <h1>Text to PPTX Generator</h1>
+  <textarea id="textInput" rows="10" cols="50" placeholder="Enter text here..."></textarea><br><br>
+  <button onclick="generatePPT()">Generate PPTX</button>
+
+  <script>
+    function generatePPT() {
+      const pptx = new PptxGenJS();
+      alert('pptxgenjs version:', pptx.version); // Check if pptxgenjs is loaded correctly
+      const inputText = document.getElementById('textInput').value;
+      const lines = inputText.split('\n');
+
+      lines.forEach((line, index) => {
+        let slide = pptx.addSlide();
+        
+        // Apply a basic template style
+        slide.background = { color: 'F7F7F7' };
+        
+        slide.addText(line, {
+          x: 1, y: 1, w: 8, h: 5,
+          align: 'center',
+          fontSize: 24,
+          color: '363636',
+          bold: true
+        });
+      });
+
+      pptx.writeFile("GeneratedPresentation.pptx");
+    }
+  </script>
+</body>
+</html>

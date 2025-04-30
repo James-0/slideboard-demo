@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>PptxGenJS Demo</title>
+  <script src="https://cdn.jsdelivr.net/npm/pptxgenjs@3.8.0/dist/pptxgen.bundle.js"></script>
+</head>
+<body>
+
+<h1>Generate PowerPoint</h1>
+<button onclick="doDemo()">Generate PPTX</button>
+
+<script>
+function doDemo() {
+  alert("Button clicked!");
+
+  let pptx = new PptxGenJS();
+  let slide = pptx.addSlide();
+  slide.addText('Hello World from JavaScript!', { x:1, y:1, fontSize:24, color:'363636' });
+
+  pptx.writeFile('demo-presentation.pptx').then(() => {
+    alert('PowerPoint file generated!');
+  }).catch(err => {
+    alert('Error: ' + err);
+  });
+}
+</script>
+
+</body>
+</html>

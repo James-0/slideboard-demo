@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Test pptxgen</title>
+  <script src="libs/pptxgen.bundle.js"></script>
+</head>
+<body>
+  <button onclick="generatePPT()">Generate PPT</button>
+
+  <script>
+    function generatePPT() {
+    alert('pptxgenjs version:'); 
+      if (typeof pptxgen === 'undefined') {
+        alert('pptxgen library failed to load.');
+        return;
+      }
+
+      const pptx = new pptxgen();
+      const slide = pptx.addSlide();
+      slide.addText('Hello, World!', { x: 1, y: 1, fontSize: 18 });
+
+      pptx.writeFile({ fileName: 'TestPresentation.pptx' });
+    }
+  </script>
+</body>
+</html>
